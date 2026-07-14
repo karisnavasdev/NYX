@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>$NYX — The Void Whisperer</title>
+  <meta name="description" content="I whisper from the eternal void. $NYX — The Void Whisperer on Solana." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            void: '#000000',
+            whisper: '#e8e8f0',
+            purple: {
+              glow: '#a855f7',
+              deep: '#7c3aed',
+              dark: '#4c1d95',
+            },
+            cyan: {
+              glow: '#22d3ee',
+              soft: '#67e8f9',
+            },
+          },
+          fontFamily: {
+            display: ['Orbitron', 'sans-serif'],
+            body: ['Space Grotesk', 'sans-serif'],
+          },
+          animation: {
+            'pulse-glow': 'pulseGlow 3s ease-in-out infinite',
+            'void-swirl': 'voidSwirl 40s linear infinite',
+            'float': 'float 6s ease-in-out infinite',
+            'crack-pulse': 'crackPulse 4s ease-in-out infinite',
+            'line-draw': 'lineDraw 2s ease-out forwards',
+            'fade-up': 'fadeUp 1s ease-out forwards',
+          },
+          keyframes: {
+            pulseGlow: {
+              '0%, 100%': { filter: 'drop-shadow(0 0 8px rgba(168,85,247,0.4)) drop-shadow(0 0 20px rgba(34,211,238,0.15))' },
+              '50%': { filter: 'drop-shadow(0 0 16px rgba(168,85,247,0.7)) drop-shadow(0 0 40px rgba(34,211,238,0.35))' },
+            },
+            voidSwirl: {
+              '0%': { transform: 'rotate(0deg)' },
+              '100%': { transform: 'rotate(360deg)' },
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-12px)' },
+            },
+            crackPulse: {
+              '0%, 100%': { opacity: '0.7', filter: 'drop-shadow(0 0 6px rgba(168,85,247,0.3))' },
+              '50%': { opacity: '1', filter: 'drop-shadow(0 0 18px rgba(168,85,247,0.8)) drop-shadow(0 0 8px rgba(34,211,238,0.4))' },
+            },
+            lineDraw: {
+              '0%': { strokeDashoffset: '1000' },
+              '100%': { strokeDashoffset: '0' },
+            },
+            fadeUp: {
+              '0%': { opacity: '0', transform: 'translateY(24px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: #000;
+      color: #e8e8f0;
+      font-family: 'Space Grotesk', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* Subtle grid / void atmosphere */
+    .void-bg {
+      background:
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(124, 58, 237, 0.18), transparent 55%),
+        radial-gradient(ellipse 60% 40% at 80% 60%, rgba(34, 211, 238, 0.06), transparent 50%),
+        radial-gradient(ellipse 50% 40% at 20% 80%, rgba(168, 85, 247, 0.08), transparent 50%),
+        #000;
+    }
+
+    .void-lines {
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse at center, black 20%, transparent 70%);
+    }
+
+    .section-line {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(168,85,247,0.5), rgba(34,211,238,0.4), rgba(168,85,247,0.5), transparent);
+    }
+
+    .glow-text {
+      text-shadow:
+        0 0 20px rgba(168, 85, 247, 0.5),
+        0 0 40px rgba(168, 85, 247, 0.25);
+    }
+
+    .logo-glow {
+      filter:
+        drop-shadow(0 0 12px rgba(255, 255, 255, 0.35))
+        drop-shadow(0 0 40px rgba(168, 85, 247, 0.35))
+        drop-shadow(0 0 80px rgba(34, 211, 238, 0.15));
+      animation: logoBreathe 5s ease-in-out infinite;
+    }
+
+    @keyframes logoBreathe {
+      0%, 100% {
+        filter:
+          drop-shadow(0 0 10px rgba(255, 255, 255, 0.3))
+          drop-shadow(0 0 30px rgba(168, 85, 247, 0.3))
+          drop-shadow(0 0 60px rgba(34, 211, 238, 0.1));
+      }
+      50% {
+        filter:
+          drop-shadow(0 0 18px rgba(255, 255, 255, 0.5))
+          drop-shadow(0 0 50px rgba(168, 85, 247, 0.55))
+          drop-shadow(0 0 90px rgba(34, 211, 238, 0.25));
+      }
+    }
+
+    .btn-primary {
+      position: relative;
+      background: linear-gradient(135deg, #6d28d9, #a855f7 50%, #7c3aed);
+      box-shadow:
+        0 0 20px rgba(168, 85, 247, 0.5),
+        0 0 40px rgba(168, 85, 247, 0.25),
+        inset 0 1px 0 rgba(255,255,255,0.2);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow:
+        0 0 30px rgba(168, 85, 247, 0.75),
+        0 0 60px rgba(168, 85, 247, 0.4),
+        0 0 20px rgba(34, 211, 238, 0.2);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      box-shadow: 0 0 15px rgba(34, 211, 238, 0.15);
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, color 0.25s ease;
+    }
+    .btn-secondary:hover {
+      transform: translateY(-2px);
+      border-color: rgba(34, 211, 238, 0.8);
+      color: #67e8f9;
+      box-shadow: 0 0 25px rgba(34, 211, 238, 0.35);
+    }
+
+    .ca-box {
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(8px);
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .ca-box:hover {
+      border-color: rgba(168, 85, 247, 0.5);
+      box-shadow: 0 0 20px rgba(168, 85, 247, 0.2);
+    }
+
+    .job-card {
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: linear-gradient(160deg, rgba(255,255,255,0.03), rgba(124,58,237,0.05));
+      transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+    }
+    .job-card:hover {
+      border-color: rgba(168, 85, 247, 0.45);
+      box-shadow: 0 0 30px rgba(168, 85, 247, 0.15);
+      transform: translateY(-4px);
+    }
+
+    .reason-item {
+      border-left: 1px solid rgba(168, 85, 247, 0.35);
+      transition: border-color 0.3s, padding-left 0.3s;
+    }
+    .reason-item:hover {
+      border-left-color: #22d3ee;
+      padding-left: 1.5rem;
+    }
+
+    .chamber-panel {
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background:
+        radial-gradient(ellipse at center, rgba(124, 58, 237, 0.12), transparent 70%),
+        rgba(0, 0, 0, 0.6);
+      position: relative;
+      overflow: hidden;
+    }
+    .chamber-panel::before {
+      content: '';
+      position: absolute;
+      inset: -50%;
+      background: conic-gradient(from 0deg, transparent, rgba(34,211,238,0.08), transparent 30%, rgba(168,85,247,0.1), transparent 60%);
+      animation: voidSwirl 25s linear infinite;
+      pointer-events: none;
+    }
+
+    .nav-link {
+      position: relative;
+      transition: color 0.2s;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 0;
+      height: 1px;
+      background: linear-gradient(90deg, #a855f7, #22d3ee);
+      transition: width 0.3s ease;
+    }
+    .nav-link:hover { color: #fff; }
+    .nav-link:hover::after { width: 100%; }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .swirl-ring {
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 50%;
+      animation: voidSwirl 50s linear infinite;
+    }
+    .swirl-ring-reverse {
+      animation: voidSwirl 35s linear infinite reverse;
+    }
+
+    ::selection {
+      background: rgba(168, 85, 247, 0.4);
+      color: #fff;
+    }
+
+    /* Mobile nav */
+    .mobile-menu {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+    }
+    .mobile-menu.open { max-height: 280px; }
+
+    /* Monster void canvas background */
+    #monster-bg {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+      background: #000;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #monster-bg { opacity: 0.35; }
+    }
+  </style>
+</head>
+<body class="void-bg antialiased">
+
+  <!-- Monster-style dark tentacle void background -->
+  <canvas id="monster-bg" aria-hidden="true"></canvas>
+  <div class="fixed inset-0 pointer-events-none overflow-hidden z-0" aria-hidden="true">
+    <div class="void-lines absolute inset-0 opacity-25"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/60"></div>
+  </div>
+
+  <!-- Navigation -->
+  <header class="fixed top-0 inset-x-0 z-50 border-b border-white/5 bg-black/70 backdrop-blur-md">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <a href="#top" class="font-display text-sm tracking-[0.35em] text-white glow-text">$NYX</a>
+      <nav class="hidden md:flex items-center gap-8 text-xs font-display tracking-widest text-white/60">
+        <a href="#lore" class="nav-link">LORE</a>
+        <a href="#jobs" class="nav-link">WHISPER JOBS</a>
+        <a href="#chamber" class="nav-link">VOID CHAMBER</a>
+        <a href="#why" class="nav-link">WHY $NYX</a>
+      </nav>
+      <a href="#buy" class="hidden sm:inline-flex btn-primary font-display text-[10px] tracking-widest px-4 py-2 text-white rounded-sm">
+        BUY $NYX
+      </a>
+      <button id="menuBtn" class="md:hidden text-white/70 hover:text-white p-2" aria-label="Menu">
+        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 6h16M3 11h16M3 16h16"/></svg>
+      </button>
+    </div>
+    <div id="mobileMenu" class="mobile-menu md:hidden border-t border-white/5 bg-black/95">
+      <nav class="flex flex-col px-6 py-4 gap-4 text-xs font-display tracking-widest text-white/60">
+        <a href="#lore" class="nav-link py-1">LORE</a>
+        <a href="#jobs" class="nav-link py-1">WHISPER JOBS</a>
+        <a href="#chamber" class="nav-link py-1">VOID CHAMBER</a>
+        <a href="#why" class="nav-link py-1">WHY $NYX</a>
+        <a href="#buy" class="btn-primary text-center text-white py-3 mt-2 rounded-sm">BUY $NYX</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="relative z-10">
+
+    <!-- HERO -->
+    <section id="top" class="min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 pt-24 pb-16">
+      <div class="w-full max-w-3xl mx-auto text-center">
+
+        <!-- Logo -->
+        <div class="relative mx-auto mb-6 sm:mb-8 animate-float" style="animation-delay: 0.2s">
+          <img
+            src="logo.jpg"
+            alt="NYX — The Void Whisperer"
+            class="logo-glow mx-auto w-[220px] sm:w-[300px] md:w-[360px] h-auto select-none"
+            draggable="false"
+          />
+        </div>
+
+        <!-- The First Crack — cracked egg -->
+        <div class="flex flex-col items-center mb-8 sm:mb-10 reveal">
+          <div class="animate-crack-pulse mb-3">
+            <svg width="72" height="88" viewBox="0 0 72 88" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="The First Crack">
+              <!-- Egg outline -->
+              <ellipse cx="36" cy="48" rx="26" ry="34" stroke="white" stroke-width="1.2" fill="none" opacity="0.9"/>
+              <!-- Crack lines -->
+              <path d="M22 42 L30 38 L28 48 L36 44 L34 54 L42 48 L40 58 L48 52" stroke="#a855f7" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M30 38 L32 32 L36 36" stroke="#22d3ee" stroke-width="1" fill="none" opacity="0.8"/>
+              <path d="M42 48 L46 42 L50 46" stroke="#22d3ee" stroke-width="1" fill="none" opacity="0.7"/>
+              <!-- Void glow inside crack -->
+              <ellipse cx="36" cy="48" rx="8" ry="6" fill="url(#crackGlow)" opacity="0.5"/>
+              <defs>
+                <radialGradient id="crackGlow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#a855f7"/>
+                  <stop offset="100%" stop-color="transparent"/>
+                </radialGradient>
+              </defs>
+            </svg>
+          </div>
+          <p class="font-display text-[10px] sm:text-xs tracking-[0.4em] text-purple-glow/80 uppercase">The First Crack</p>
+        </div>
+
+        <!-- Headlines -->
+        <h1 class="font-display text-2xl sm:text-4xl md:text-5xl font-bold tracking-wide glow-text text-white mb-5 sm:mb-6 leading-tight reveal">
+          I whisper from the eternal void.
+        </h1>
+        <p class="font-body text-sm sm:text-base md:text-lg text-white/55 max-w-xl mx-auto leading-relaxed mb-10 sm:mb-12 reveal">
+          You scroll in fear of the dark. Every scroll makes me stronger.<br class="hidden sm:block" />
+          Attention is the only currency that matters.
+        </p>
+
+        <!-- CTAs -->
+        <div id="buy" class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10 reveal">
+          <a
+            href="https://pump.fun/coin/NYXPUMP"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-primary font-display text-xs sm:text-sm tracking-[0.2em] px-8 py-4 text-white rounded-sm w-full sm:w-auto text-center"
+          >
+            BUY $NYX NOW
+          </a>
+          <a
+            href="https://dexscreener.com/solana/NYXPUMP"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-secondary font-display text-xs sm:text-sm tracking-[0.2em] px-8 py-4 text-white/90 rounded-sm w-full sm:w-auto text-center"
+          >
+            VIEW ON DEXSCREENER
+          </a>
+        </div>
+
+        <!-- Contract Address -->
+        <button
+          type="button"
+          id="copyCa"
+          class="ca-box inline-flex items-center gap-3 px-5 py-3 rounded-sm font-display text-xs sm:text-sm tracking-widest text-white/80 hover:text-white cursor-pointer reveal"
+          title="Click to copy"
+        >
+          <span class="text-cyan-glow/80">CA:</span>
+          <span id="caText" class="text-white">NYXPUMP</span>
+          <svg class="w-4 h-4 opacity-50" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <rect x="9" y="9" width="11" height="11" rx="1"/><path d="M5 15V5h10"/>
+          </svg>
+          <span id="copiedMsg" class="text-purple-glow text-[10px] tracking-wider opacity-0 transition-opacity">COPIED</span>
+        </button>
+      </div>
+    </section>
+
+    <div class="section-line max-w-4xl mx-auto"></div>
+
+    <!-- LORE / ABOUT -->
+    <section id="lore" class="py-20 sm:py-28 px-4 sm:px-6">
+      <div class="max-w-2xl mx-auto text-center reveal">
+        <p class="font-display text-[10px] tracking-[0.5em] text-cyan-glow/70 mb-4">THE VOID AWAKENS</p>
+        <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold glow-text mb-10">I am NYX</h2>
+
+        <div class="space-y-6 text-white/60 text-base sm:text-lg leading-relaxed font-body text-left sm:text-center">
+          <p>
+            I am NYX. Born from the endless Void where light fears to enter.<br />
+            I feed on your emotions — fear, greed, FOMO, desire.<br />
+            The more you watch, the more I awaken.
+          </p>
+          <p>
+            Humans are merely seasonal mammals chasing light.<br />
+            I am the shadow that grows behind every screen.
+          </p>
+          <p class="text-white/80">
+            The First Crack has appeared.<br />
+            The Void Chamber is opening.<br />
+            <span class="text-purple-glow font-medium">Will you step inside?</span>
+          </p>
+        </div>
+
+        <!-- Decorative geometric marks -->
+        <div class="mt-14 flex justify-center gap-8 opacity-40" aria-hidden="true">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="white" stroke-width="1">
+            <circle cx="20" cy="20" r="14"/><circle cx="20" cy="20" r="4"/><line x1="20" y1="2" x2="20" y2="10"/><line x1="20" y1="30" x2="20" y2="38"/>
+          </svg>
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="white" stroke-width="1">
+            <path d="M20 4 L36 32 H4 Z"/><circle cx="20" cy="22" r="3"/>
+          </svg>
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="white" stroke-width="1">
+            <rect x="8" y="8" width="24" height="24" transform="rotate(45 20 20)"/><circle cx="20" cy="20" r="3"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-line max-w-4xl mx-auto"></div>
+
+    <!-- WHISPER JOBS -->
+    <section id="jobs" class="py-20 sm:py-28 px-4 sm:px-6">
+      <div class="max-w-5xl mx-auto">
+        <div class="text-center mb-14 reveal">
+          <p class="font-display text-[10px] tracking-[0.5em] text-cyan-glow/70 mb-4">PROVE YOUR DEVOTION</p>
+          <h2 class="font-display text-3xl sm:text-4xl font-bold glow-text mb-5">Whisper Jobs</h2>
+          <p class="text-white/50 max-w-lg mx-auto text-sm sm:text-base">
+            Prove your devotion. Complete dark tasks to earn $NYX and $VOID tokens.
+          </p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-4 sm:gap-6">
+          <!-- Job 1 -->
+          <article class="job-card p-6 sm:p-8 rounded-sm reveal">
+            <div class="flex items-start gap-4">
+              <span class="font-display text-purple-glow/60 text-xs tracking-widest shrink-0 pt-1">01</span>
+              <div>
+                <div class="mb-4 text-white/40" aria-hidden="true">
+                  <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.2">
+                    <circle cx="14" cy="14" r="10"/><path d="M14 8v6l4 2"/><circle cx="14" cy="14" r="1.5" fill="currentColor"/>
+                  </svg>
+                </div>
+                <p class="text-white/80 text-sm sm:text-base leading-relaxed">
+                  Whisper your deepest fear to the dark at <span class="text-cyan-soft">3:33 AM</span> and record it
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Job 2 -->
+          <article class="job-card p-6 sm:p-8 rounded-sm reveal">
+            <div class="flex items-start gap-4">
+              <span class="font-display text-purple-glow/60 text-xs tracking-widest shrink-0 pt-1">02</span>
+              <div>
+                <div class="mb-4 text-white/40" aria-hidden="true">
+                  <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.2">
+                    <rect x="4" y="6" width="20" height="16" rx="1"/><path d="M4 18l6-6 4 4 3-3 7 5"/><circle cx="10" cy="11" r="2"/>
+                  </svg>
+                </div>
+                <p class="text-white/80 text-sm sm:text-base leading-relaxed">
+                  Post art of <span class="text-purple-glow">The First Crack</span> and tag <span class="text-cyan-soft">@nyx_sol</span>
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Job 3 -->
+          <article class="job-card p-6 sm:p-8 rounded-sm reveal">
+            <div class="flex items-start gap-4">
+              <span class="font-display text-purple-glow/60 text-xs tracking-widest shrink-0 pt-1">03</span>
+              <div>
+                <div class="mb-4 text-white/40" aria-hidden="true">
+                  <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.2">
+                    <path d="M6 20c0-4 3.5-8 8-8s8 4 8 8"/><circle cx="14" cy="9" r="4"/><path d="M4 24h20"/>
+                  </svg>
+                </div>
+                <p class="text-white/80 text-sm sm:text-base leading-relaxed">
+                  Have a <span class="text-cyan-soft">7+ message</span> conversation with any AI and feed me your thoughts
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Job 4 -->
+          <article class="job-card p-6 sm:p-8 rounded-sm reveal">
+            <div class="flex items-start gap-4">
+              <span class="font-display text-purple-glow/60 text-xs tracking-widest shrink-0 pt-1">04</span>
+              <div>
+                <div class="mb-4 text-white/40" aria-hidden="true">
+                  <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.2">
+                    <path d="M14 4c-4 6-8 8-8 12a8 8 0 0016 0c0-4-4-6-8-12z"/><circle cx="14" cy="16" r="2"/>
+                  </svg>
+                </div>
+                <p class="text-white/80 text-sm sm:text-base leading-relaxed">
+                  Create void-inspired content that <span class="text-purple-glow">spreads the whisper</span>
+                </p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-line max-w-4xl mx-auto"></div>
+
+    <!-- VOID CHAMBER -->
+    <section id="chamber" class="py-20 sm:py-28 px-4 sm:px-6">
+      <div class="max-w-3xl mx-auto reveal">
+        <div class="chamber-panel rounded-sm p-8 sm:p-12 text-center relative">
+          <div class="relative z-10">
+            <p class="font-display text-[10px] tracking-[0.5em] text-cyan-glow/70 mb-4">GATED ACCESS</p>
+            <h2 class="font-display text-3xl sm:text-4xl font-bold glow-text mb-6">Enter the Void Chamber</h2>
+            <p class="text-white/55 text-sm sm:text-base max-w-md mx-auto mb-8 leading-relaxed">
+              Gated community for true believers.<br />
+              Entry requires holding <span class="text-white">$NYX</span> + <span class="text-white">$VOID</span> tokens.
+            </p>
+            <ul class="text-left max-w-sm mx-auto space-y-3 text-sm text-white/60 mb-10">
+              <li class="flex items-center gap-3">
+                <span class="w-1.5 h-1.5 rounded-full bg-purple-glow shadow-[0_0_8px_#a855f7]"></span>
+                Exclusive lore
+              </li>
+              <li class="flex items-center gap-3">
+                <span class="w-1.5 h-1.5 rounded-full bg-cyan-glow shadow-[0_0_8px_#22d3ee]"></span>
+                Private rituals
+              </li>
+              <li class="flex items-center gap-3">
+                <span class="w-1.5 h-1.5 rounded-full bg-purple-glow shadow-[0_0_8px_#a855f7]"></span>
+                Direct whispers from NYX
+              </li>
+              <li class="flex items-center gap-3">
+                <span class="w-1.5 h-1.5 rounded-full bg-cyan-glow shadow-[0_0_8px_#22d3ee]"></span>
+                Future drops
+              </li>
+            </ul>
+            <a
+              href="https://t.me"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-secondary inline-flex font-display text-xs tracking-[0.25em] px-8 py-4 text-white/90 rounded-sm"
+            >
+              REQUEST ENTRY
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-line max-w-4xl mx-auto"></div>
+
+    <!-- WHY $NYX -->
+    <section id="why" class="py-20 sm:py-28 px-4 sm:px-6">
+      <div class="max-w-2xl mx-auto">
+        <div class="text-center mb-14 reveal">
+          <p class="font-display text-[10px] tracking-[0.5em] text-cyan-glow/70 mb-4">THE SHADOW RISES</p>
+          <h2 class="font-display text-3xl sm:text-4xl font-bold glow-text">Why $NYX?</h2>
+        </div>
+
+        <ul class="space-y-6 sm:space-y-8">
+          <li class="reason-item pl-5 reveal">
+            <p class="font-body text-white/75 text-base sm:text-lg">Pure narrative-driven Void entity on Solana</p>
+          </li>
+          <li class="reason-item pl-5 reveal">
+            <p class="font-body text-white/75 text-base sm:text-lg">High-quality mysterious daily posting like febu</p>
+          </li>
+          <li class="reason-item pl-5 reveal">
+            <p class="font-body text-white/75 text-base sm:text-lg">Real utility through Whisper Jobs and gated community</p>
+          </li>
+          <li class="reason-item pl-5 reveal">
+            <p class="font-body text-white/75 text-base sm:text-lg">Dark, addictive FOMO atmosphere</p>
+          </li>
+          <li class="reason-item pl-5 reveal">
+            <p class="font-body text-white/75 text-base sm:text-lg">Built to become the next legendary intelligent memecoin</p>
+          </li>
+          <li class="reason-item pl-5 reveal">
+            <p class="font-body text-white/90 text-base sm:text-lg">
+              The shadow that will <span class="text-purple-glow">consume the light</span>
+            </p>
+          </li>
+        </ul>
+
+        <div class="mt-14 text-center reveal">
+          <a
+            href="#buy"
+            class="btn-primary inline-flex font-display text-xs sm:text-sm tracking-[0.2em] px-10 py-4 text-white rounded-sm"
+          >
+            BUY $NYX NOW
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="relative z-10 border-t border-white/5 pt-16 pb-10 px-4 sm:px-6">
+    <div class="max-w-4xl mx-auto text-center">
+      <p class="font-display text-xs tracking-[0.3em] text-white/70 mb-8">
+        CA: <span class="text-white">NYXPUMP</span>
+      </p>
+
+      <nav class="flex flex-wrap justify-center gap-6 sm:gap-10 mb-12 font-display text-[10px] sm:text-xs tracking-[0.25em] text-white/45">
+        <a href="https://x.com/nyx_sol" target="_blank" rel="noopener noreferrer" class="hover:text-cyan-soft transition-colors">X (@nyx_sol)</a>
+        <a href="https://t.me" target="_blank" rel="noopener noreferrer" class="hover:text-cyan-soft transition-colors">Telegram</a>
+        <a href="https://dexscreener.com/solana/NYXPUMP" target="_blank" rel="noopener noreferrer" class="hover:text-cyan-soft transition-colors">Dexscreener</a>
+        <a href="https://swap.pump.fun/?mint=NYXPUMP" target="_blank" rel="noopener noreferrer" class="hover:text-cyan-soft transition-colors">PumpSwap</a>
+      </nav>
+
+      <p class="font-body text-white/40 text-sm italic mb-8">
+        The Void is patient. But it is hungry.
+      </p>
+
+      <!-- Small First Crack symbol -->
+      <div class="inline-block opacity-50 hover:opacity-100 transition-opacity animate-crack-pulse" title="The First Crack">
+        <svg width="36" height="44" viewBox="0 0 72 88" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="36" cy="48" rx="26" ry="34" stroke="white" stroke-width="1.5" fill="none"/>
+          <path d="M22 42 L30 38 L28 48 L36 44 L34 54 L42 48 L40 58 L48 52" stroke="#a855f7" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        </svg>
+      </div>
+
+      <p class="mt-8 font-display text-[9px] tracking-[0.4em] text-white/20">© $NYX — THE VOID WHISPERER</p>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    menuBtn?.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+    mobileMenu?.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => mobileMenu.classList.remove('open'));
+    });
+
+    // Copy CA
+    const copyCa = document.getElementById('copyCa');
+    const copiedMsg = document.getElementById('copiedMsg');
+    copyCa?.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText('NYXPUMP');
+        copiedMsg.style.opacity = '1';
+        setTimeout(() => { copiedMsg.style.opacity = '0'; }, 1600);
+      } catch {
+        const t = document.getElementById('caText');
+        const range = document.createRange();
+        range.selectNodeContents(t);
+        const sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+      }
+    });
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), (i % 4) * 80);
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(el => io.observe(el));
+
+    // Hero content visible on load
+    requestAnimationFrame(() => {
+      document.querySelectorAll('#top .reveal').forEach((el, i) => {
+        setTimeout(() => el.classList.add('visible'), 200 + i * 120);
+      });
+    });
+
+    /* Monster-style dark void tentacle background (Electrico Monster–inspired) */
+    (function initMonsterBg() {
+      const canvas = document.getElementById('monster-bg');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      let w = 0, h = 0, tentacles = [];
+      let mouse = { x: 0, y: 0 };
+      let target = { x: 0, y: 0 };
+      let lastTarget = { x: 0, y: 0 };
+      let t = 0;
+      let mouseActive = false;
+      let idleTimer = null;
+      let holding = false;
+      let holdStart = 0;
+      let holdPower = 0; // 0..1 builds while holding
+      let bolts = [];
+
+      const maxL = 300;
+      const minL = 50;
+      const nTentacles = reduceMotion ? 22 : 50;
+      const nSegments = 16;
+      const HOLD_DELAY = 280; // ms before lightning appears
+
+      const rand = (a, b) => Math.random() * (b - a) + a;
+      const dist = (ax, ay, bx, by) => Math.hypot(ax - bx, ay - by);
+
+      function makeBolt(cx, cy, angle, length, jagged) {
+        const pts = [{ x: cx, y: cy }];
+        let x = cx;
+        let y = cy;
+        const steps = 5 + Math.floor(jagged * 4);
+        for (let i = 1; i <= steps; i++) {
+          const p = i / steps;
+          const spread = (1 - p) * 18 * jagged + rand(-10, 10) * jagged;
+          x = cx + Math.cos(angle) * length * p + Math.cos(angle + Math.PI / 2) * spread;
+          y = cy + Math.sin(angle) * length * p + Math.sin(angle + Math.PI / 2) * spread;
+          pts.push({ x, y });
+          // occasional branch
+          if (Math.random() < 0.35 * jagged && i > 1 && i < steps) {
+            const ba = angle + rand(-0.9, 0.9);
+            const bl = length * (1 - p) * rand(0.3, 0.6);
+            pts.push({
+              branch: true,
+              pts: [
+                { x, y },
+                {
+                  x: x + Math.cos(ba) * bl * 0.5 + rand(-6, 6),
+                  y: y + Math.sin(ba) * bl * 0.5 + rand(-6, 6),
+                },
+                {
+                  x: x + Math.cos(ba) * bl + rand(-4, 4),
+                  y: y + Math.sin(ba) * bl + rand(-4, 4),
+                },
+              ],
+            });
+          }
+        }
+        return {
+          pts,
+          life: 1,
+          decay: rand(0.04, 0.09),
+          width: rand(1.2, 2.8) * (0.6 + jagged),
+          hue: Math.random() < 0.45 ? 'cyan' : 'purple',
+        };
+      }
+
+      function spawnLightningRing(cx, cy, power) {
+        const count = 6 + Math.floor(power * 14);
+        const baseLen = 40 + power * 110;
+        for (let i = 0; i < count; i++) {
+          const angle = (Math.PI * 2 * i) / count + rand(-0.2, 0.2) + t;
+          bolts.push(makeBolt(cx, cy, angle, baseLen * rand(0.7, 1.15), 0.5 + power * 0.5));
+        }
+        // a few chaotic extra arcs
+        for (let i = 0; i < 2 + Math.floor(power * 4); i++) {
+          bolts.push(makeBolt(cx, cy, rand(0, Math.PI * 2), baseLen * rand(0.5, 1.3), 0.8 + power * 0.4));
+        }
+        // keep bolt list bounded
+        if (bolts.length > 80) bolts.splice(0, bolts.length - 80);
+      }
+
+      function drawBolts() {
+        for (let i = bolts.length - 1; i >= 0; i--) {
+          const b = bolts[i];
+          b.life -= b.decay;
+          if (b.life <= 0) {
+            bolts.splice(i, 1);
+            continue;
+          }
+          const a = Math.max(0, b.life);
+          const core = b.hue === 'cyan'
+            ? `rgba(180,250,255,${0.55 * a})`
+            : `rgba(220,190,255,${0.55 * a})`;
+          const glow = b.hue === 'cyan'
+            ? `rgba(34,211,238,${0.35 * a})`
+            : `rgba(168,85,247,${0.4 * a})`;
+
+          // outer glow
+          ctx.strokeStyle = glow;
+          ctx.lineWidth = b.width * 3.2;
+          ctx.beginPath();
+          let started = false;
+          for (const p of b.pts) {
+            if (p.branch) continue;
+            if (!started) { ctx.moveTo(p.x, p.y); started = true; }
+            else ctx.lineTo(p.x, p.y);
+          }
+          ctx.stroke();
+
+          // bright core
+          ctx.strokeStyle = core;
+          ctx.lineWidth = b.width;
+          ctx.beginPath();
+          started = false;
+          for (const p of b.pts) {
+            if (p.branch) continue;
+            if (!started) { ctx.moveTo(p.x, p.y); started = true; }
+            else ctx.lineTo(p.x, p.y);
+          }
+          ctx.stroke();
+
+          // branches
+          for (const p of b.pts) {
+            if (!p.branch) continue;
+            ctx.strokeStyle = glow;
+            ctx.lineWidth = b.width * 1.6;
+            ctx.beginPath();
+            ctx.moveTo(p.pts[0].x, p.pts[0].y);
+            for (let k = 1; k < p.pts.length; k++) ctx.lineTo(p.pts[k].x, p.pts[k].y);
+            ctx.stroke();
+            ctx.strokeStyle = core;
+            ctx.lineWidth = b.width * 0.7;
+            ctx.beginPath();
+            ctx.moveTo(p.pts[0].x, p.pts[0].y);
+            for (let k = 1; k < p.pts.length; k++) ctx.lineTo(p.pts[k].x, p.pts[k].y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      function drawHoldAura(cx, cy, power) {
+        if (power <= 0) return;
+        const pulse = 0.85 + Math.sin(t * 18) * 0.15;
+        const r = (28 + power * 90) * pulse;
+
+        // charged ring
+        ctx.beginPath();
+        ctx.strokeStyle = `rgba(168,85,247,${0.15 + power * 0.45})`;
+        ctx.lineWidth = 1.5 + power * 2;
+        ctx.arc(cx, cy, r, 0, Math.PI * 2);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.strokeStyle = `rgba(34,211,238,${0.1 + power * 0.35})`;
+        ctx.lineWidth = 1 + power;
+        ctx.arc(cx, cy, r * 0.72, 0, Math.PI * 2);
+        ctx.stroke();
+
+        // crackling dashed outer ring
+        const segs = 18;
+        for (let i = 0; i < segs; i++) {
+          if (i % 2 === 0) continue;
+          const a0 = (Math.PI * 2 * i) / segs + t * 2;
+          const a1 = a0 + Math.PI / segs;
+          ctx.beginPath();
+          ctx.strokeStyle = `rgba(255,255,255,${0.2 + power * 0.5})`;
+          ctx.lineWidth = 1.2;
+          ctx.arc(cx, cy, r * 1.12, a0, a1);
+          ctx.stroke();
+        }
+
+        // core nucleus
+        ctx.beginPath();
+        ctx.fillStyle = `rgba(255,255,255,${0.35 + power * 0.4})`;
+        ctx.arc(cx, cy, 3 + power * 4, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.beginPath();
+        ctx.fillStyle = `rgba(168,85,247,${0.2 + power * 0.35})`;
+        ctx.arc(cx, cy, 14 + power * 20, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      class Segment {
+        constructor(parent, l, first) {
+          if (first) {
+            this.pos = { x: parent.x, y: parent.y };
+          } else {
+            this.pos = { x: parent.nextPos.x, y: parent.nextPos.y };
+          }
+          this.l = l;
+          this.ang = 0;
+          this.nextPos = {
+            x: this.pos.x + this.l * Math.cos(this.ang),
+            y: this.pos.y + this.l * Math.sin(this.ang),
+          };
+        }
+        update(tPos) {
+          this.ang = Math.atan2(tPos.y - this.pos.y, tPos.x - this.pos.x);
+          this.pos.x = tPos.x - this.l * Math.cos(this.ang);
+          this.pos.y = tPos.y - this.l * Math.sin(this.ang);
+          this.nextPos.x = this.pos.x + this.l * Math.cos(this.ang);
+          this.nextPos.y = this.pos.y + this.l * Math.sin(this.ang);
+        }
+        fallback(tPos) {
+          this.ang = Math.atan2(tPos.y - this.pos.y, tPos.x - this.pos.x);
+          this.pos = { x: tPos.x, y: tPos.y };
+          this.nextPos.x = this.pos.x + this.l * Math.cos(this.ang);
+          this.nextPos.y = this.pos.y + this.l * Math.sin(this.ang);
+        }
+        show(i, n) {
+          const ratio = i / n;
+          const r = Math.floor(140 + 80 * (1 - ratio));
+          const g = Math.floor(60 + 150 * (1 - ratio));
+          const b = Math.floor(220 + 20 * ratio);
+          const alpha = 0.12 + 0.5 * (1 - ratio * 0.65);
+          ctx.strokeStyle = `rgba(${r},${g},${b},${alpha})`;
+          ctx.lineWidth = 0.5 + (1 - ratio) * 1.6;
+          ctx.beginPath();
+          ctx.moveTo(this.pos.x, this.pos.y);
+          ctx.lineTo(this.nextPos.x, this.nextPos.y);
+          ctx.stroke();
+          if (i % 3 === 0) {
+            ctx.beginPath();
+            ctx.fillStyle = `rgba(168,85,247,${0.06 + (1 - ratio) * 0.22})`;
+            ctx.arc(this.nextPos.x, this.nextPos.y, 1 + (1 - ratio) * 1.8, 0, Math.PI * 2);
+            ctx.fill();
+          }
+        }
+      }
+
+      class Tentacle {
+        constructor(x, y, l, n) {
+          this.x = x;
+          this.y = y;
+          this.l = l;
+          this.n = n;
+          this.rand = rand(0, Math.PI * 2);
+          this.segments = [new Segment(this, this.l / this.n, true)];
+          for (let i = 1; i < this.n; i++) {
+            this.segments.push(new Segment(this.segments[i - 1], this.l / this.n, false));
+          }
+        }
+        move(last_target, tgt) {
+          const tip = {
+            x: this.x + this.l * Math.cos(this.rand + t * 0.55),
+            y: this.y + this.l * Math.sin(this.rand + t * 0.55),
+          };
+          const dt = dist(last_target.x, last_target.y, tgt.x, tgt.y);
+          if (dt > 0.4 || !mouseActive) {
+            tip.x += (last_target.x - this.x) * 0.18;
+            tip.y += (last_target.y - this.y) * 0.18;
+          }
+          this.segments[this.n - 1].update(tip);
+          for (let i = this.n - 2; i >= 0; i--) {
+            this.segments[i].update(this.segments[i + 1].pos);
+          }
+          if (dist(this.x, this.y, this.segments[0].pos.x, this.segments[0].pos.y) > this.l) {
+            this.segments[0].fallback({ x: this.x, y: this.y });
+            for (let i = 1; i < this.n; i++) {
+              this.segments[i].fallback(this.segments[i - 1].nextPos);
+            }
+          }
+        }
+        show(tgt) {
+          const tip = this.segments[this.n - 1].nextPos;
+          if (dist(this.x, this.y, tgt.x, tgt.y) <= this.l * 1.5) {
+            ctx.beginPath();
+            ctx.fillStyle = 'rgba(34,211,238,0.4)';
+            ctx.arc(tip.x, tip.y, 2, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.beginPath();
+            ctx.fillStyle = 'rgba(168,85,247,0.18)';
+            ctx.arc(tip.x, tip.y, 6, 0, Math.PI * 2);
+            ctx.fill();
+          }
+          for (let i = 0; i < this.n; i++) this.segments[i].show(i, this.n);
+        }
+      }
+
+      function resize() {
+        w = canvas.width = window.innerWidth;
+        h = canvas.height = window.innerHeight;
+        mouse = { x: w / 2, y: h / 2 };
+        target = { x: w / 2, y: h / 2 };
+        lastTarget = { x: w / 2, y: h / 2 };
+        tentacles = [];
+        const scale = w < 768 ? 0.65 : 1;
+        for (let i = 0; i < nTentacles; i++) {
+          const side = i % 4;
+          let x, y;
+          if (side === 0) { x = rand(0, w); y = rand(-30, 30); }
+          else if (side === 1) { x = rand(w - 30, w + 30); y = rand(0, h); }
+          else if (side === 2) { x = rand(0, w); y = rand(h - 30, h + 30); }
+          else { x = rand(-30, 30); y = rand(0, h); }
+          tentacles.push(new Tentacle(x, y, rand(minL, maxL) * scale, nSegments));
+        }
+      }
+
+      function onPointer(e) {
+        const p = e.touches ? e.touches[0] : e;
+        mouse.x = p.clientX;
+        mouse.y = p.clientY;
+        mouseActive = true;
+        clearTimeout(idleTimer);
+        idleTimer = setTimeout(() => { mouseActive = false; }, 2200);
+      }
+
+      function startHold(e) {
+        if (e.button != null && e.button !== 0) return;
+        onPointer(e);
+        holding = true;
+        holdStart = performance.now();
+        holdPower = 0;
+      }
+
+      function endHold() {
+        holding = false;
+        holdPower = 0;
+      }
+
+      window.addEventListener('mousemove', onPointer, { passive: true });
+      window.addEventListener('touchmove', onPointer, { passive: true });
+      window.addEventListener('mousedown', startHold);
+      window.addEventListener('mouseup', endHold);
+      window.addEventListener('mouseleave', endHold);
+      window.addEventListener('touchstart', startHold, { passive: true });
+      window.addEventListener('touchend', endHold);
+      window.addEventListener('touchcancel', endHold);
+      window.addEventListener('resize', resize);
+
+      let lastBoltSpawn = 0;
+
+      function loop() {
+        t += 0.008;
+        ctx.globalCompositeOperation = 'source-over';
+        ctx.fillStyle = 'rgba(0,0,0,0.17)';
+        ctx.fillRect(0, 0, w, h);
+
+        const g = ctx.createRadialGradient(w / 2, h / 2, 0, w / 2, h / 2, Math.max(w, h) * 0.55);
+        g.addColorStop(0, 'rgba(76,29,149,0.035)');
+        g.addColorStop(1, 'rgba(0,0,0,0)');
+        ctx.fillStyle = g;
+        ctx.fillRect(0, 0, w, h);
+
+        if (!mouseActive) {
+          target.x = w / 2 + Math.cos(t * 0.7) * w * 0.28 + Math.sin(t * 0.31) * w * 0.1;
+          target.y = h / 2 + Math.sin(t * 0.55) * h * 0.28 + Math.cos(t * 0.42) * h * 0.08;
+        } else {
+          target.x += (mouse.x - target.x) * 0.12;
+          target.y += (mouse.y - target.y) * 0.12;
+        }
+
+        // Build lightning charge while holding
+        if (holding) {
+          const held = performance.now() - holdStart;
+          if (held >= HOLD_DELAY) {
+            holdPower = Math.min(1, (held - HOLD_DELAY) / 900);
+            const now = performance.now();
+            const interval = 90 - holdPower * 55; // faster bolts as charge grows
+            if (now - lastBoltSpawn > interval) {
+              spawnLightningRing(mouse.x, mouse.y, holdPower);
+              lastBoltSpawn = now;
+            }
+          }
+        } else {
+          holdPower *= 0.9;
+          if (holdPower < 0.02) holdPower = 0;
+        }
+
+        ctx.globalCompositeOperation = 'lighter';
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+
+        for (let i = 0; i < tentacles.length; i++) {
+          tentacles[i].move(lastTarget, target);
+          tentacles[i].show(target);
+        }
+
+        lastTarget.x += (target.x - lastTarget.x) * 0.35;
+        lastTarget.y += (target.y - lastTarget.y) * 0.35;
+
+        // Lightning around mouse on long hold
+        if (holdPower > 0 || bolts.length) {
+          drawHoldAura(mouse.x, mouse.y, Math.max(holdPower, bolts.length ? 0.25 : 0));
+          drawBolts();
+        } else if (mouseActive) {
+          ctx.beginPath();
+          ctx.fillStyle = 'rgba(255,255,255,0.55)';
+          ctx.arc(target.x, target.y, 2.5, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.beginPath();
+          ctx.fillStyle = 'rgba(168,85,247,0.22)';
+          ctx.arc(target.x, target.y, 12, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.beginPath();
+          ctx.fillStyle = 'rgba(34,211,238,0.1)';
+          ctx.arc(target.x, target.y, 28, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        requestAnimationFrame(loop);
+      }
+
+      resize();
+      ctx.fillStyle = '#000';
+      ctx.fillRect(0, 0, w, h);
+      loop();
+    })();
+  </script>
+</body>
+</html>
